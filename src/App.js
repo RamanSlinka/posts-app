@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import "./styles/App.css"
 import PostList from "./components/UI/PostList";
 import MyButton from "./components/UI/button/MyButton";
@@ -7,23 +7,29 @@ import PostForm from "./components/UI/PostForm";
 import MySelect from "./components/UI/select/MySelect";
 import PostFilter from "./components/UI/PostFilter";
 import MyModals from "./components/UI/myModal/MyModals";
-import {usePosts} from "./components/hooks/usePost";
+import {usePosts} from "./hooks/usePost";
+import axios from "axios";
+import PostService from "./API/PostService";
 
 function App() {
 
-    const [posts, setPosts] = useState([
-        {id: 1, title: 'JavaScript', body: 'Description'},
-        {id: 2, title: '1TypeScript', body: 'TypeScript DescriptionDescriptionDescriptionDescription'},
-        {id: 3, title: 'JS', body: 'DS'}
-    ])
+    const [posts, setPosts] = useState([])
     const [filter, setFilter] = useState({sort: '', query: ''});
     const [modal, setModal] = useState(false);
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
 
+    useEffect(() => {
+        fetchPosts()
+    },[])
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
         setModal(false)
+    }
+
+    async function  fetchPosts () {
+        const posts = await PostService.getAll()
+        setPosts(posts)
     }
 
     const removePost = (post) => {
