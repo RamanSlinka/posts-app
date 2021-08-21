@@ -10,26 +10,30 @@ import MyModals from "./components/UI/myModal/MyModals";
 import {usePosts} from "./hooks/usePost";
 import axios from "axios";
 import PostService from "./API/PostService";
+import Loader from "./components/UI/loader/Loader";
 
 function App() {
 
-    const [posts, setPosts] = useState([])
+    const [posts, setPosts] = useState([]);
     const [filter, setFilter] = useState({sort: '', query: ''});
     const [modal, setModal] = useState(false);
     const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query);
+    const [isPostsLoading, setIsPostLoading] = useState(false)
 
     useEffect(() => {
         fetchPosts()
-    },[])
+    }, [])
 
     const createPost = (newPost) => {
         setPosts([...posts, newPost])
         setModal(false)
     }
 
-    async function  fetchPosts () {
+    async function fetchPosts() {
+        setIsPostLoading(true)
         const posts = await PostService.getAll()
         setPosts(posts)
+        setIsPostLoading(false)
     }
 
     const removePost = (post) => {
@@ -41,12 +45,12 @@ function App() {
         <div className="App">
             <MyButton
                 style={{marginTop: "30px"}}
-                onClick={()=> setModal(true)}>
+                onClick={() => setModal(true)}>
                 Create post
             </MyButton>
             <MyModals
                 visible={modal}
-            setVisible={setModal}
+                setVisible={setModal}
             >
                 <PostForm create={createPost}/>
             </MyModals>
@@ -57,9 +61,13 @@ function App() {
                 setFilter={setFilter}
             />
 
-            < PostList
-                remove={removePost}
-                posts={sortedAndSearchedPosts} title="List of posts"/>
+            {isPostsLoading
+                ? <div style={{display: "flex", justifyContent: "center", marginTop: "50px"}}><Loader/></div>
+                : < PostList
+                    remove={removePost}
+                    posts={sortedAndSearchedPosts} title="List of posts"/>
+            }
+
 
         </div>
     );
