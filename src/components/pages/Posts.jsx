@@ -1,5 +1,6 @@
-import React, {useEffect,  useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./../../styles/App.css"
+import st from "./Post.module.css"
 import {usePosts} from "../../hooks/usePost";
 import {useFetching} from "../../hooks/useFetching";
 import PostService from "../../API/PostService";
@@ -51,37 +52,43 @@ function Posts() {
     }
 
     return (
-        <div className="App">
-            <MyButton
-                style={{marginTop: "30px"}}
-                onClick={() => setModal(true)}>
-                Create post
-            </MyButton>
-            <MyModals
-                visible={modal}
-                setVisible={setModal}
-            >
-                <PostForm create={createPost}/>
-            </MyModals>
+        <div className={st.pagesPageWrapper}>
+            <div>
+                <div className={st.createPostBtn}>
+                    <MyButton
+                        onClick={() => setModal(true)}>
+                        Create post
+                    </MyButton>
+                </div>
+                <MyModals
+                    visible={modal}
+                    setVisible={setModal}
+                >
+                    <PostForm create={createPost}/>
+                </MyModals>
 
-            <hr style={{margin: "15px 0"}}/>
-            <PostFilter
-                filter={filter}
-                setFilter={setFilter}
-            />
-            {postError &&
-            <h2> Error ${postError}</h2>
-            }
-            {isPostsLoading
-                ? <div style={{display: "flex", justifyContent: "center", marginTop: "50px"}}><Loader/></div>
-                : < PostList
-                    remove={removePost}
-                    posts={sortedAndSearchedPosts} title="List of posts"/>
-            }
-            <Pagination changePage={changePage}
-                        page={page}
-                        totalPages={totalPages}
-            />
+                <hr style={{margin: "15px 0"}}/>
+                <PostFilter
+                    filter={filter}
+                    setFilter={setFilter}
+                />
+                
+                <Pagination changePage={changePage}
+                            page={page}
+                            totalPages={totalPages}
+                />
+
+                {postError &&
+                <h2> Error ${postError}</h2>
+                }
+                {isPostsLoading
+                    ? <div style={{display: "flex", justifyContent: "center", marginTop: "50px"}}><Loader/></div>
+                    : < PostList
+                        remove={removePost}
+                        posts={sortedAndSearchedPosts} title="List of posts"/>
+                }
+
+            </div>
         </div>
     );
 }

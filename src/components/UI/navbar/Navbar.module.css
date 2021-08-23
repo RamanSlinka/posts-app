@@ -1,0 +1,41 @@
+.navbar {
+
+    height: 70px;
+   min-width: 100vw;
+    display: flex;
+   position: fixed;
+    align-items: center;
+    padding: 0 15px;
+    background: teal;
+}
+
+.navbar__btn {
+    margin-left: 60px;
+}
+@media screen and (max-width: 500px) {
+    .navbar__btn{
+        margin-left: 20px;
+    }
+    .link {
+        padding: 15px;
+        font-size: 14px;
+        font-weight: bold;
+    }
+}
+
+.navbar__links {
+    margin-left: auto;
+}
+
+.link {
+    color: #cff8f8;
+    padding: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.link:hover {
+    color: rgb(255, 255, 255);
+    font-size: 20px;
+    transition: 0.5s;
+}

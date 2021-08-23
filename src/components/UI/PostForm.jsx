@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import MyInput from "./input/MyInput";
 import MyButton from "./button/MyButton";
+import   "./../../styles/App.css"
 
 const PostForm = ({create}) => {
     const [post, setPost] = useState({title: '', body: ''})
@@ -28,7 +29,9 @@ const PostForm = ({create}) => {
                     onChange={e => setPost({...post, body: e.target.value})}
                     type="text"
                     placeholder="post description"/>
+               <div className={"postFormBtn"}>
                 <MyButton onClick={addNewPost}>Create post</MyButton>
+               </div>
             </form>
 
     );

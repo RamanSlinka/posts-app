@@ -1,0 +1,28 @@
+.pagesPageWrapper {
+    margin-top: 70px;
+    width: 80%;
+    display: flex;
+    justify-content: center;
+
+}
+.createPostBtn {
+    margin-top: 30px;
+}
+
+
+
+.postIdPageWrapper {
+    height: 100vh;
+}
+
+.postIdWrapper {
+    max-width: 800px;
+    border: teal 2px solid;
+    margin: 170px;
+    padding: 20px;
+    background: #ffffff;
+}
+
+.mailFromComments {
+    padding-top: 10px;
+}

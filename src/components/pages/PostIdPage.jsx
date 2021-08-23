@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {useFetching} from "../../hooks/useFetching";
 import PostService from "../../API/PostService";
 import Loader from "../UI/loader/Loader";
+import st from "./Post.module.css"
 
 const PostIdPage = () => {
 
@@ -26,27 +27,28 @@ const PostIdPage = () => {
     }, [])
 
     return (
-        <div>
-            <h3>3245 dfghh ID = {params.id}</h3>
-            {isLoading
-                ? <Loader/>
-                : <div>{post.id}.{post.title} </div>
-            }
-            <h2>
-                Comments
-            </h2>
-            {isComLoading
-                ? <Loader/>
-                : <div>
-                    {comments.map(comm =>
-                         <div key={comm.id} style={{marginTop: "15px"}}>
-                             <h5>{comm.email}</h5>
-                             <div>{comm.body}</div>
-                         </div>
-                    )}
-                </div>
-
-            }
+        <div className={st.postIdPageWrapper}>
+            <div className={st.postIdWrapper}>
+                <h5>You open post with ID = {params.id}</h5>
+                {isLoading
+                    ? <Loader/>
+                    : <div>{post.id}.{post.title} </div>
+                }
+                <h2>
+                    Comments:
+                </h2>
+                {isComLoading
+                    ? <Loader/>
+                    : <div>
+                        {comments.map(comm =>
+                            <div key={comm.id}>
+                                <h4 className={st.mailFromComments}>{comm.email}</h4>
+                                <div>{comm.body}</div>
+                            </div>
+                        )}
+                    </div>
+                }
+            </div>
         </div>
     );
 };

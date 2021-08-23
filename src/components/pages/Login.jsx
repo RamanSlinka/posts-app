@@ -44,7 +44,7 @@ const Login = () => {
     return (
         <div className={st.login__wrapper}>
             <h1 className={st.title}>Login</h1>
-            <div className={st.condition}>To run the application - enter any E-MAIL and PASSWORD in the fields</div>
+            <div className={st.condition}> * To run the application - enter any E-MAIL and PASSWORD in the fields</div>
             <form onSubmit={formik.handleSubmit}>
                 <MyInput type="email"
                          name="email"

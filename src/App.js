@@ -19,6 +19,7 @@ function App() {
 
 
     return (
+
         <AuthContext.Provider value={{
             isAuth,
             setIsAuth,

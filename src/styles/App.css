@@ -18,8 +18,15 @@
     align-items: center;
 }
 
+/*@media (max-width: 800px) {*/
+/*    .App {*/
+/*       min-width: 450px;*/
+/*    }*/
+/*}*/
+
 .App {
-    width: 800px;
+    min-width: 800px;
+    background: #cff8f8;
 }
 
 .post {
@@ -77,18 +84,7 @@
     background: rgba(255, 165, 0, 0.5);
 }
 
-.navbar{
-    height: 70px;
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    padding: 0 15px;
-    background: rgb(0, 128, 128);
-    text-decoration: none;
+.postFormBtn{
+    margin-top: 30px;
 }
 
-.navbar__links{
-    margin-left: auto;
-    padding: 20px;
-
-}
